@@ -1,0 +1,141 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Chat",
+    "version": "1.0"
+  },
+  "paths": {
+    "/chat_streams": {
+      "get": {
+        "description": "returns a list of stream information",
+        "responses": {
+          "200": {
+            "description": "a list of stream information",
+            "examples": {
+              "application/json": [
+                {
+                  "_id": "592f96b69fd65a26a0c09e74",
+                  "name": "Sample Stream A"
+                },
+                {
+                  "_id": "592f96f79fd65a26a0c09e75",
+                  "name": "Sample Stream B"
+                }
+              ]
+            }
+          }
+        },
+        "operationId": "chat_streamsGET",
+        "x-swagger-router-controller": "Chat"
+      },
+      "post": {
+        "description": "creates and return a stream",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "a stream information created",
+            "examples": {
+              "application/json": {
+                "_id": "592f96b69fd65a26a0c09e74",
+                "name": "Sample Stream A"
+              }
+            }
+          }
+        },
+        "operationId": "chat_streamsPOST",
+        "x-swagger-router-controller": "Chat"
+      }
+    },
+    "/chat_messages": {
+      "get": {
+        "description": "return a list of comments on streams",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of comments on streams",
+            "examples": {
+              "application/json": [
+                {
+                  "_id": "592f97069fd65a26a0c09e76",
+                  "stream_id": "592f96b69fd65a26a0c09e74",
+                  "user_id": "User A",
+                  "message": "How are you?",
+                  "replyMessage_id": ""
+                },
+                {
+                  "_id": "592f97199fd65a26a0c09e77",
+                  "stream_id": "592f96b69fd65a26a0c09e74",
+                  "user_id": "User B",
+                  "message": "I'm good. And you?",
+                  "replyMessage_id": ""
+                }
+              ]
+            }
+          }
+        },
+        "operationId": "chat_messagesGET",
+        "x-swagger-router-controller": "Chat"
+      },
+      "post": {
+        "description": "create a comment on a stream",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "stream_id": {
+                  "type": "string"
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "replyTo_id": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "the comment created",
+            "examples": {
+              "application/json": {}
+            }
+          }
+        },
+        "operationId": "chat_messagesPOST",
+        "x-swagger-router-controller": "Chat"
+      }
+    }
+  }
+}

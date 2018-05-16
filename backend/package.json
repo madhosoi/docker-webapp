@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.4",
+  "description": "API server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.7.1",
+    "express": "^4.14.0",
+    "swagger-tools": "^0.10.1",
+    "mongodb": "^2.1.18"
+  },
+  "devDependencies": {},
+  
+  "repository": {
+    "url": ""
+  }
+}

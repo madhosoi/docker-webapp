@@ -1,0 +1,45 @@
+version: "3"
+
+volumes:
+  mongo_data:
+  mongo_dump:
+
+networks:
+  backend:
+  frontend:
+
+services:
+  mongo:
+    image: mongo:latest
+    volumes:
+      - mongo_data:/data/db
+      - mongo_dump:/dump
+    command: mongod --smallfiles --oplogSize 128
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - backend
+  backend:
+    image: cnets/webapp-backend:0.6.local
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - backend
+      - frontend
+    ports:
+      - "8080:8080"
+  frontend:
+    image: cnets/webapp-frontend:0.6-nginx
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - frontend
+    ports:
+      - "80:80"
+  
