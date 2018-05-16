@@ -31,18 +31,6 @@ Chat
     npm start
     ```
 
-## On K5 by Fujitsu
-
-We recommend using [K5 PaaS CF](http://www.fujitsu.com/global/solutions/cloud/k5/paas/) by which you can easily deploy the application.
-
-### Preparation
-
-1. Deploy following buildpacks. ([CF Document](https://cf-docs.jp-east-1.paas.cloud.global.fujitsu.com/en/manual/tut/tut/topics/c-service-catalog-deploy.html))
-    * Node.js buildpack for the backend application
-    * Static file buildpack for the frontend application
-
-2. Configure the CLI tool for CF. ([CF Document](https://cf-docs.jp-east-1.paas.cloud.global.fujitsu.com/en/manual/tut/tut/topics/t-dev-pre-cf.html))
-
 ### Deployment
 
 #### Backend application
@@ -81,11 +69,6 @@ We recommend using [K5 PaaS CF](http://www.fujitsu.com/global/solutions/cloud/k5
     cf push [YOUR_FRONTEND_APPLICATION_NAME]
     ```
 
-
-
-## **MODIFY! MODIFY! MODIFY!**
-
-Not to mention that, it's just out of a template. Better you modify, finner your application become. So let's play with it.
 
 ## Version
 
