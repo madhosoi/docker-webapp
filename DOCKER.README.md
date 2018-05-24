@@ -36,3 +36,5 @@ Docker Development
   - az login
   - az aks get-credentials --resource-group [rg] --name [clustername]
   - kubectl get all
+
+*  kubectl create secret docker-registry acr-auth --docker-server $ACR_LOGIN_SERVER --docker-username $CLIENT_ID --docker-password $SP_PASSWD --docker-email [email]

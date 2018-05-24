@@ -12,7 +12,7 @@ spec:
     - --smallfiles
     - --oplogSize
     - "128"
-    image: cnetsdiegom.azurecr.io/webapp-mongo:0.1# mongo:latest
+    image: cnetsdiegom.azurecr.io/webapp-mongo:0.1
     name: mongo
     resources: {}
     volumeMounts:
@@ -20,6 +20,8 @@ spec:
       name: mongo-data
     - mountPath: /dump
       name: mongo-dump
+  # imagePullSecrets:
+  #  - name: acr-auth
   restartPolicy: OnFailure
   volumes:
   - name: mongo-data
