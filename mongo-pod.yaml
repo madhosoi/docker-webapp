@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mongo
+  name: mongo
+spec:
+  containers:
+  - args:
+    - mongod
+    - --smallfiles
+    - --oplogSize
+    - "128"
+    image: cnetsdiegom.azurecr.io/webapp-mongo:0.1# mongo:latest
+    name: mongo
+    resources: {}
+    volumeMounts:
+    - mountPath: /data/db
+      name: mongo-data
+    - mountPath: /dump
+      name: mongo-dump
+  restartPolicy: OnFailure
+  volumes:
+  - name: mongo-data
+    persistentVolumeClaim:
+      claimName: mongo-data
+  - name: mongo-dump
+    persistentVolumeClaim:
+      claimName: mongo-dump
+status: {}
