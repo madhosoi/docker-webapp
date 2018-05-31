@@ -8,7 +8,7 @@ Docker Development
 * docker build -t cnetsdiegom.azurecr.io/webapp-backend:0.1 .
 * docker image push cnetsdiegom.azurecr.io/webapp-backend:0.1
 * cd ..\frontend\
-* docker build -t cnetsdiegom.azurecr.io/webapp-frontend:0.1 .
+* docker build -t cnetsdiegom.azurecr.io/webapp-frontend:0.1 --build-arg API_URL=http://backend-url .
 * docker image push cnetsdiegom.azurecr.io/webapp-frontend:0.1
 * docker pull mongo:latest
 * docker image tag mongo:latest cnetsdiegom.azurecr.io/webapp-mongo:0.1

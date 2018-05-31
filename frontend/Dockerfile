@@ -1,7 +1,8 @@
 FROM node:8.11 AS build
 ADD . /app
 WORKDIR /app
-ENV API_URL=http://192.168.99.10:8080/
+ARG API_URL
+ENV API_URL=${API_URL:-'http://192.168.99.10:8080/'}
 RUN npm install && npm run lint && npm run test && npm run build
 
 # FROM httpd:latest
