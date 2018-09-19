@@ -1,0 +1,28 @@
+version: "3"
+
+networks:
+  frontend:
+  proxy:
+    external: true
+
+services:
+  frontend:
+    image: diegom.azurecr.io/apidemo-frontend:latest
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.enable=true"
+        - "traefik.logLevel=DEBUG"
+        - "traefik.frontend.rule=Host:apidemo.k5.cloudmad.net"
+        - "traefik.port=80"
+        - "traefik.backend=apidemofrontend_frontend"
+        - "traefik.frontend.entryPoints=http"
+        - "traefik.backend.loadbalancer.swarm=true"
+        - "traefik.docker.network=proxy"
+    networks:
+      - frontend
+      - proxy
+    ports:
+      - "8083:80"  

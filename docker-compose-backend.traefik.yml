@@ -1,0 +1,45 @@
+version: "3"
+
+volumes:
+  mongo_data:
+  mongo_dump:
+
+networks:
+  backend:
+  proxy:
+    external: true
+
+services:
+  mongo:
+    image: mongo:latest
+    volumes:
+      - mongo_data:/data/db
+      - mongo_dump:/dump
+    command: mongod --smallfiles --oplogSize 128
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - backend
+  backend:
+    image: diegom.azurecr.io/apidemo-backend:latest
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.enable=true"
+        - "traefik.logLevel=DEBUG"
+        - "traefik.frontend.rule=Host:apidemobackend.k5.cloudmad.net"
+        - "traefik.port=8080"
+        - "traefik.backend=apidemobackend_backend"
+        - "traefik.frontend.entryPoints=http"
+        - "traefik.backend.loadbalancer.swarm=true"
+        - "traefik.docker.network=proxy"
+    networks:
+      - backend
+      - proxy
+    ports:
+      - "8082:8080"
+  
