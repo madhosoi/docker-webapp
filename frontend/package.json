@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server -d --progress --colors --open",
+    "startvm": "webpack-dev-server -d --progress --colors --host 0.0.0.0",
     "build": "webpack -p --progress --colors --display-error-details --env.production",
     "test": "cross-env BABEL_JEST_STAGE=0 jest",
     "lint": "eslint app/** --fix"

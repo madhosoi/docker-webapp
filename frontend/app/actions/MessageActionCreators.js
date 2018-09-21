@@ -3,12 +3,14 @@ import AppDispatcher from "../dispatcher/AppDispatcher";
 import { ActionTypes } from "../constants/AppConstants";
 import config from "../config";
 
+
 const api = axios.create({
   baseURL: config.apiServer.url
 });
 
 const MessageActionCreators = {
   getMessages({ streamId, resolve, reject }) {
+   
     api
       .get("/chat_messages", {
         params: {
@@ -32,6 +34,7 @@ const MessageActionCreators = {
       });
   },
   sendMessage({ streamId, userId, message, replyMessageId, resolve, reject }) {
+    
     api
       .post("/chat_messages", {
         stream_id: streamId,

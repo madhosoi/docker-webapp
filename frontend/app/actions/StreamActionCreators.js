@@ -2,6 +2,7 @@ import axios from "axios"; // @see https://www.npmjs.com/package/axios
 import AppDispatcher from "../dispatcher/AppDispatcher";
 import { ActionTypes } from "../constants/AppConstants";
 import config from "../config";
+import request from "request";
 
 const api = axios.create({
   baseURL: config.apiServer.url
@@ -24,6 +25,7 @@ const StreamActionCreators = {
       });
   },
   createStream({ name, resolve, reject }) {
+    
     api
       .post("/chat_streams", { name })
       .then(response => {

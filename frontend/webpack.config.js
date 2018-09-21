@@ -5,6 +5,9 @@ const config = (env = {}) => {
     new webpack.DefinePlugin({
       'process.env': {
         API_URL: JSON.stringify(process.env.API_URL || 'http://localhost:3000'),
+        API_TOKEN_URL: JSON.stringify(process.env.API_TOKEN_URL || 'http://localhost:3000'),
+        API_USER: JSON.stringify(process.env.API_USER || ''),
+        API_PWD: JSON.stringify(process.env.API_PWD || ''),
       },
     }),
   ];
@@ -44,6 +47,7 @@ const config = (env = {}) => {
       historyApiFallback: true,
     },
     plugins,
+    
   };
 };
 
