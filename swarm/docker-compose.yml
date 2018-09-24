@@ -10,7 +10,7 @@ networks:
 
 services:
   mongo:
-    image:  cnetsdiegom.azurecr.io/webapp-mongo:0.1# mongo:latest
+    image:  mongo:latest
     volumes:
       - mongo_data:/data/db
       - mongo_dump:/dump
@@ -22,18 +22,21 @@ services:
     networks:
       - backend
   backend:
-    image: cnetsdiegom.azurecr.io/webapp-backend:0.1
+    image: diegom.azurecr.io/apidemo-backend:latest
     deploy:
       replicas: 1
       restart_policy:
         condition: on-failure
+    environment:
+      MONGO_URL: "${MONGO_URL}"
+      PORT: 8080
     networks:
       - backend
       - frontend
     ports:
       - "8080:8080"
   frontend:
-    image: cnetsdiegom.azurecr.io/webapp-frontend:0.1
+    image: diegom.azurecr.io/apidemo-frontend:latest
     deploy:
       replicas: 1
       restart_policy:
