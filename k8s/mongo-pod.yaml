@@ -12,7 +12,7 @@ spec:
     - --smallfiles
     - --oplogSize
     - "128"
-    image: cnetsdiegom.azurecr.io/webapp-mongo:0.1
+    image: mongo:latest
     name: mongo
     resources: {}
     volumeMounts:

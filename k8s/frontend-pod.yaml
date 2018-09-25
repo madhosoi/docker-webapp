@@ -1,13 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  creationTimestamp: null
   labels:
-    io.kompose.service: frontend
+    app: apidemo-frontend
   name: frontend
 spec:
   containers:
-  - image: cnetsdiegom.azurecr.io/webapp-frontend:0.1
+  - image: diegom.azurecr.io/apidemo-frontend:latest
     name: frontend
     ports:
     - containerPort: 80
