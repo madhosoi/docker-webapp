@@ -47,7 +47,11 @@ const config = (env = {}) => {
       historyApiFallback: true,
     },
     plugins,
-    
+    node: {
+      fs: 'empty',
+      net: 'empty',
+      tls: 'empty'
+    }
   };
 };
 
