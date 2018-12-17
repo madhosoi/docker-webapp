@@ -23,7 +23,7 @@ services:
     networks:
       - backend
   backend:
-    image: diegom.azurecr.io/apidemo-backend:latest
+    image: madhosoi/apidemo-backend:latest
     deploy:
       replicas: 1
       restart_policy:
